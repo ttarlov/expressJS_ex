@@ -73,19 +73,10 @@ app.patch('/api/v1/pets/:id', (request, response) => {
         .status(404)
         .send({error: `No Pet Found with an id of ${id}`})
     }else {
-        const newPet = 
-        { 
-            id: petToChange.id, 
-            name: request.body.name, 
-            type: petToChange.type
-        }
-        
-        deletePet(id)
-        app.locals.pets.push(newPet)
-        console.log(app.locals.pets)
+        petToChange.name = request.body.name
         return response
         .status(202)
-        .json({newPet})
+        .json({petToChange})
     }
 
 });
